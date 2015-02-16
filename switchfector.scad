@@ -3,6 +3,7 @@ $fn=250;
 
 body_thickness = 5;
 mag_height = 10;  // 2 x 5mm magnets
+hotend_radius = 14;  // Hole for the hotend (J-Head diameter is 16mm).
 
 module ring(ra,ha,ta)
 {
@@ -41,12 +42,29 @@ module effector_cuts()
 {
     translate([0,0,-.1]) ring(150,body_thickness+.2,50);
     translate([0,0,-.1]) rounded_triangle(30,body_thickness+.2);
+   
+}
+
+module hotend_body()
+{
+     rounded_triangle(26,body_thickness);     
+     rotate([0,0,30]) translate([-50,-50,body_thickness-1]) cube([100,20,1]); //hinge    
+    
+}
+
+module hotend_cuts()
+{
+     translate([0, 0, 0])
+        cylinder(r1=hotend_radius, r2=hotend_radius+1, h=body_thickness+1, $fn=36);
+    
 }
 
 module hotend_mount()
 {
-    rounded_triangle(26,body_thickness);     
-    rotate([0,0,30]) translate([-50,-50,body_thickness-1]) cube([100,20,1]); //hinge
+    difference(){
+        hotend_body();
+        hotend_cuts();
+        }
 }
 
 module effector()
