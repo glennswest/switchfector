@@ -2,12 +2,12 @@ use <microswitch.scad>
 use <MCAD/nuts_and_bolts.scad>;
 use <mount_e3d.scad>;
 
-$fn=250;
+//$fn=250;
 
 body_thickness = 5;
 mag_height = 10;  // 2 x 5mm magnets
 mag_size = 10.2;
-hotend_radius = 16;  // Hole for the hotend (J-Head diameter is 16mm).
+hotend_radius = 16.1;  // Hole for the hotend (J-Head diameter is 16mm).
 mount_radius = 18.5;
 
 
