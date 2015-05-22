@@ -1,5 +1,6 @@
 include <configuration.scad>;
 
+
 separation = 44;  // Distance between ball joint mounting faces.
 offset = 22;  // Same as DELTA_EFFECTOR_OFFSET in Marlin.
 mount_radius = 18.5;  // Hotend mounting screws, standard would be 25mm.
@@ -8,19 +9,20 @@ mount_radius = 18.5;  // Hotend mounting screws, standard would be 25mm.
 jhead_od_radius = 8.00;  // Hole for the hotend (J-Head diameter is 16mm).
 jhead_id_radius = 5.80;
 jhead_upper_height = 0.0; // From top of hotend to notch -- Leave 2mm for upper bowden mount
-jhead_notch_height = 3.9; // Notch height
+jhead_notch_height = 6.0; // Notch height
 // End Edit
 
 height = jhead_upper_height + jhead_notch_height;
 
 
+
 module body_base() {
   union() {
         echo("Height = ", height);
-		cylinder(r=offset-5, h=height, center=true, $fn=36);
+		cylinder(r=offset-5, h=height, center=true, $fn=256);
 		
 		for (a = [0:120:359]) rotate([0, 0, a]) {
-      	translate([0, mount_radius, 0])	cylinder(r=8.5, h=height, center=true, $fn=36);
+      	translate([0, mount_radius, 0])	cylinder(r=8.5, h=height, center=true, $fn=256);
     		}
 		   
     }
@@ -31,7 +33,7 @@ module body_cuts() {
      for (a = [0:120:359]) rotate([0, 0, a]) {
       translate([0, mount_radius, 0])	cylinder(r=m3_wide_radius, h=height*2, center=true, $fn=12);
      for (a = [60:120:359]) rotate([0, 0, a]) {
-       translate([0, offset, 0])	cylinder(r=12, h=height*2, center=true, $fn=36);
+       translate([0, offset, 0])	cylinder(r=12, h=height*2, center=true, $fn=256);
        }
     }
    }

@@ -6,7 +6,7 @@ $fn=250;
 
 body_thickness = 5;
 mag_height = 10;  // 2 x 5mm magnets
-mag_size = 8; //10.2;
+mag_size = 10; //10.2;
 top_mag_size = 10.2;
 hotend_radius = 16;  // Hole for the hotend (J-Head diameter is 16mm).
 mount_radius = 18.5;
@@ -78,7 +78,7 @@ module rounded_triangle(tsize,theight)
 module effector_body()
 { 
     difference(){
-      cylinder(r=70,h=body_thickness,$fn=3);
+      cylinder(r=75,h=body_thickness+3,$fn=3);
       mag_mounts_cuts();
       }  
     mag_mounts();   
@@ -103,8 +103,9 @@ module mag_mounts_cuts()
 module mag_screws()
 {
    
-    translate([-10,2.5,body_thickness+.3]) rotate([0,180,0]) boltHole(3.1,length=12);
-    translate([ 10,2.5,body_thickness+.3]) rotate([0,180,0]) boltHole(3.1,length=12);
+    translate([-10,2.5,body_thickness+3+.3]) rotate([0,180,0]) boltHole(3.1,length=15);
+    translate([  0,12.5-16,5]) rotate([-90,180,0]) boltHole(3.1,length=11.5);
+    translate([ 10,2.5,body_thickness+3+.3]) rotate([0,180,0]) boltHole(3.1,length=15);
     
   
  
@@ -112,14 +113,31 @@ module mag_screws()
     translate([ 10,2.5,2]) rotate([0,180,0]) nutHole(3.1,length=12);
    
 }
+
+module mag_screws_tight()
+{
+   
+    translate([-5,2.5,body_thickness+3+.3]) rotate([0,180,0]) boltHole(3.1,length=12);
+    translate([ 5,2.5,body_thickness+3+.3]) rotate([0,180,0]) boltHole(3.1,length=12);
+    translate([ 0,5.5,body_thickness]) rotate([90,180,0]) boltHole(3.1,length=15);
+    
+  
+ 
+    translate([-5,2.5,2]) rotate([0,180,0]) nutHole(3.1,length=12);
+    translate([ 5,2.5,2]) rotate([0,180,0]) nutHole(3.1,length=12);
+   
+}
+
 module effector_cuts()
 {
-    translate([0,0,-.1]) ring(62,body_thickness+.2,20);
-    translate([0,0,-.1]) rounded_triangle(53,body_thickness+.2);
+    translate([0,0,-.1]) ring(62,body_thickness+3+.2,20);
+    translate([0,0,-.1]) rounded_triangle(53,body_thickness+3+.2);
     
     rotate([0,0,30])     translate([0,-33.5,body_thickness-6]) mag_screws();
     rotate([0,0,30+120]) translate([0,-33.5,body_thickness-6]) mag_screws();
     rotate([0,0,30+240]) translate([0,-33.5,body_thickness-6]) mag_screws();
+    
+    rotate([0,0,30]) translate([0,55,body_thickness-6]) mag_screws_tight();
     
     
    
@@ -127,19 +145,19 @@ module effector_cuts()
 
 module hotend_body()
 {
-     rounded_triangle(49,body_thickness);     
-     rotate([0,0,30]) translate([-28,-30,0]) cube([56,10,1]); //hinge    
+     rounded_triangle(49,body_thickness+3);     
+     rotate([0,0,30]) translate([-28,-28,0]) cube([56,7,2]); //hinge    
     
 }
 
 module hotend_cuts()
 {
      translate([0, 0, 0])
-        cylinder(r1=hotend_radius/2, r2=hotend_radius/2+1, h=body_thickness+1, $fn=36);
-    translate([0,0,-.1]) ring(45,body_thickness+.2,5);
+        cylinder(r1=hotend_radius/2, r2=hotend_radius/2+1, h=body_thickness+1+3, $fn=36);
+    translate([0,0,-.1]) ring(45,body_thickness+3+.2,5);
     for (a = [0:120:359]) rotate([0, 0, a+30]) {
-      translate([0, mount_radius, body_thickness-1])
-            rotate([0,180,0])  boltHole(3.1,length=8); 
+      translate([0, mount_radius, body_thickness+3-1])
+            rotate([0,180,0])  boltHole(4,length=12); 
       }
 }
 
