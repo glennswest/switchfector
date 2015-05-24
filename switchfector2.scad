@@ -33,10 +33,10 @@ module mags_body()
 {
     translate([-25,0,-body_thickness]) cylinder(r=(mag_size/2)+3,h=body_thickness);
     translate([-25,0,0]) ring(mag_size/2,mag_height,3);
-    translate([-25,0,mag_height]) ring(top_mag_size/2,2.75,2);
+    translate([-25,0,mag_height]) ring(top_mag_size/2,2.75+3.35,2);
     translate([ 25,0,-body_thickness]) cylinder(r=(mag_size/2)+3,h=body_thickness);
     translate([ 25,0,0]) ring(mag_size/2,mag_height,3);
-    translate([ 25,0,mag_height]) ring(top_mag_size/2,2.75,2); 
+    translate([ 25,0,mag_height]) ring(top_mag_size/2,2.75+3.35,2); 
   
  
     
@@ -44,12 +44,13 @@ module mags_body()
 
 module mag_body_screws()
 {
-   translate([-25,0,1]) rotate([0,180,0])  boltHole(3.1,length=12);
-   translate([ 25,0,body_thickness]) rotate([0,180,0])  boltHole(3.1,length=12);
+   
    translate([-25,0,3]) rotate([0,180,0])  nutHole(3.5);
    translate([ 25,0,3]) rotate([0,180,0])  nutHole(3.5);
    translate([10+7+8,2.5-2+8,body_thickness+.3]) rotate([90,90,0]) boltHole(3,"MM",17);
    translate([-17-10+2,2.5-2+8,body_thickness+.3]) rotate([90,90,0]) boltHole(3,"MM",17);
+   translate([10+7+8,2.5-2+8,body_thickness+.3+7.5]) rotate([90,90,0]) boltHole(3,"MM",17);
+   translate([-17-10+2,2.5-2+8,body_thickness+.3+7.5]) rotate([90,90,0]) boltHole(3,"MM",17);
     
 }
 
@@ -64,6 +65,9 @@ module mag_cuts()
       
       
     //ring(top_mag_size/2,2.75,1); 
+   translate([-25,0,body_thicknes+8]) rotate([0,180,0])  boltHole(3.1,length=20);
+   translate([ 25,0,body_thickness+8]) rotate([0,180,0])  boltHole(3.1,length=20);
+  
 }  
 
 
@@ -178,14 +182,14 @@ module effector()
         }
     hotend_mount();  
      
-    rotate([0,0,120]) %translate([41+5,-3+2,13]) rotate([180,0,90]) microswitch();
+    rotate([0,0,120]) %translate([41+5,-3+2,13+3]) rotate([180,0,90]) microswitch();
     difference(){
-       rotate([0,0,120]) translate([44+5,-14+5,5]) cube([5,20,14]); // Switch Block
+       rotate([0,0,120]) translate([44+5,-14+5,5]) cube([5,20,16]); // Switch Block
        
-       rotate([0,0,120]) translate([42,-7.6+2,12.8]) rotate([0,90,0])  boltHole(3.1,length=15);
-       rotate([0,0,120]) translate([42,1.3+2,12.8]) rotate([0,90,0])  boltHole(3.1,length=15); 
-       rotate([0,0,120]) translate([53,-7.6+2,12.8]) rotate([0,90,0])  nutHole(3.1);
-       rotate([0,0,120]) translate([53,1.3+2,12.8]) rotate([0,90,0])   nutHole(3.1);  
+       rotate([0,0,120]) translate([42,-7.6+2,12.8+3]) rotate([0,90,0])  boltHole(3.1,length=15);
+       rotate([0,0,120]) translate([42,1.3+2,12.8+3]) rotate([0,90,0])  boltHole(3.1,length=15); 
+       rotate([0,0,120]) translate([53,-7.6+2,12.8+3]) rotate([0,90,0])  nutHole(3.1);
+       rotate([0,0,120]) translate([53,1.3+2,12.8+3]) rotate([0,90,0])   nutHole(3.1);  
        }
     }
     
