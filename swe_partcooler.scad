@@ -99,7 +99,7 @@ module fan_holder()
              //translate([0,-25,-55]) cube([20,50,1]);
              translate([0,-25,-50]) rotate([0,90,0]) tube(6,50,20,1); 
              translate([0,-25,-56])  cube([1,50,7]);
-             translate([23,-25,-56])  rotate([0,-45,0]) cube([1,50,7]); 
+             translate([23.8,-25.0,-55.6])  rotate([0,-45,0]) cube([1,50,7]); 
             }
        translate([-41,0,-52]) arc(50,41,7,5);
        translate([8.5+8,2-12,-9])  rotate([0,180,0]) boltHole(3,length=10);
