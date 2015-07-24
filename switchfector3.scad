@@ -46,7 +46,8 @@ module mags_body()
     %translate([-20,0,0]) cube([1,1,10]);
     %translate([20,0,0]) cube([1,1,10]); 
     rotate([0,-90,0]) translate([0,0,4.5]) mag_body(0);
-    rotate([0,90,0])  translate([0,0,4.5]) mag_body(0);    
+    rotate([0,90,0])  translate([0,0,4.5]) mag_body(0);
+    translate([-17,-8,5]) cube([35,4,4]);    
 }
 
 module holed_triangle(thesize,width,thickness)
