@@ -9,8 +9,8 @@ $fn=100;
 
 body_thickness = 11.5;
 mag_height = 10;  // 2 x 5mm magnets
-mag_size = 10; //10.2;
-top_mag_size = 10.2;
+mag_size = 10.3; //10.2;
+top_mag_size = 10.3;
 hotend_radius = 16;  // Hole for the hotend (J-Head diameter is 16mm).
 mount_radius = 18.5;
 
@@ -43,8 +43,10 @@ module mags_body()
 {
     %translate([-25,0,0]) cube([1,1,10]);
     %translate([25,0,0]) cube([1,1,10]);
-    rotate([0,-90,0]) translate([0,0,10]) mag_body(0);
-    rotate([0,90,0])  translate([0,0,10]) mag_body(0);    
+    %translate([-20,0,0]) cube([1,1,10]);
+    %translate([20,0,0]) cube([1,1,10]); 
+    rotate([0,-90,0]) translate([0,0,4.5]) mag_body(0);
+    rotate([0,90,0])  translate([0,0,4.5]) mag_body(0);    
 }
 
 module holed_triangle(thesize,width,thickness)
@@ -114,7 +116,7 @@ module effector_complete()
     inner_body();
     switch();
     
-    rotate([0,0,60]) translate([-24,-20,5]) cube([48,7,3]); //hinge   
+    rotate([0,0,60]) translate([-24,-20,5]) cube([48,7,2.5]); //hinge   
 
     rotate([0,0,60]) translate([8,-62,6.5]) rotate([0,180,0]) rj45Receiver();
     rotate([0,0,120]) translate([0,37,4]) rotate([-60,0,0]) fan_mount();

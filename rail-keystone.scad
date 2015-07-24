@@ -1,5 +1,6 @@
 use <keystone.scad>;
 use <MCAD/nuts_and_bolts.scad>;
+$fn=256;
 
 difference(){
   union(){
