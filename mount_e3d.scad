@@ -7,10 +7,11 @@ mount_radius = 18.5;  // Hotend mounting screws, standard would be 25mm.
 
 // Tuning Parameters for Different Jheads -- Edit Here
 jhead_od_radius = 8.00;  // Hole for the hotend (J-Head diameter is 16mm).
-jhead_id_radius = 5.80;
+jhead_id_radius = 6.6;
 jhead_upper_height = 0.0; // From top of hotend to notch -- Leave 2mm for upper bowden mount
 jhead_notch_height = 6.0; // Notch height
 // End Edit
+$fn=256;
 
 height = jhead_upper_height + jhead_notch_height;
 
@@ -31,12 +32,13 @@ module body_base() {
 module body_cuts() {
    union() {
      for (a = [0:120:359]) rotate([0, 0, a]) {
-      translate([0, mount_radius, 0])	cylinder(r=m3_wide_radius, h=height*2, center=true, $fn=12);
+      translate([0, mount_radius, 0])	cylinder(r=m3_wide_radius+.2, h=height*2, center=true, $fn=12);
      for (a = [60:120:359]) rotate([0, 0, a]) {
        translate([0, offset, 0])	cylinder(r=12, h=height*2, center=true, $fn=256);
        }
     }
    }
+  translate([40,-55,-5]) rotate([0,0,60]) cube([40,40,10]);
 
 }
 
